@@ -45,6 +45,6 @@ struct NewType: Codable {
 ```
 
 ## Known issues
--  Heterogeneous types in arrays are currently not supported (e.g `[123, "string"]`) unless the types are compatible to another, for example `Int` can be promoted to `Double` and any type can become an `Optional` if a `null` is present in the array.
-- If the root type of the JSON document is an array, it is unwrapped until a dictionary is found. That dictionary forms the new root type of the final Swift struct. JSON documents with an array root type are expected to be decoded to a Swift type wrapped into an array (e.g. `JSONDecoder().decode([SomeType].self, from: jsonData)`)
+-  Heterogeneous types in arrays are currently not supported (e.g `[123, "string"]`) unless the types can be "merged", for example `Int` can be promoted to `Double` and any type can become an `Optional` if a `null` is present in the array.
+- If the root type of the JSON document is an array, it is unwrapped until a dictionary is found. That dictionary forms the new root type of the final Swift struct. JSON documents with an array root type are expected to be decoded to a Swift type wrapped in an array (e.g. `JSONDecoder().decode([SomeType].self, from: jsonData)`)
 
