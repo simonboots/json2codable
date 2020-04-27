@@ -5,7 +5,7 @@ JSON2Codable is a simple command-line tool that reads a JSON document from stdin
 ## Example
 
 ```
-$ cat << EOF | json2codable
+$ cat colors.json
 {
   "colors": [
     {
@@ -28,7 +28,8 @@ $ cat << EOF | json2codable
     }
   ]
 }
-EOF
+
+$ cat colors.json | json2codable
 struct NewType: Codable {
     let colors: [Color]
     struct Color: Codable {
