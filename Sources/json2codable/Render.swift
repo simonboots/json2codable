@@ -22,8 +22,8 @@ private func render(_ type: JSONType, indentLevel i: Int, nameHint: String? = ni
         return (type: "Bool", def: "")
     case .int:
         return (type: "Int", def: "")
-    case .float:
-        return (type: "Float", def: "")
+    case .double:
+        return (type: "Double", def: "")
     case .string:
         return (type: "String", def: "")
     case .array(let arrayType):
@@ -35,7 +35,7 @@ private func render(_ type: JSONType, indentLevel i: Int, nameHint: String? = ni
         r.type += "?"
         return r
     case .dict(let dictContent):
-        let structName = nameHint?.capitalizedFirst() ?? "NewType"
+        let structName = nameHint?.toTypeName() ?? "NewType"
         var def = indent(i) + "struct \(structName): Codable {\n"
 
         dictContent
@@ -54,4 +54,10 @@ private func render(_ type: JSONType, indentLevel i: Int, nameHint: String? = ni
 
 private func indent(_ level: Int) -> String {
     return String(repeating: " ", count: level * 4)
+}
+
+extension String {
+    func toTypeName() -> String {
+        return singularize().capitalizedFirst()
+    }
 }

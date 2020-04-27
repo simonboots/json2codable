@@ -10,8 +10,8 @@ func parse(object: Any) -> Result<JSONType, RecodeError> {
         return .success(.int)
     }
     
-    if object is Float {
-        return .success(.float)
+    if object is Double {
+        return .success(.double)
     }
     
     if object is String {
@@ -43,11 +43,11 @@ func parse(object: Any) -> Result<JSONType, RecodeError> {
                 return parseResult
             }
             
-            let refineResult = refine(type, parsedType)
-            guard case .success(let refinedType) = refineResult else {
-                return refineResult
+            let mergeResult = merge(type, parsedType)
+            guard case .success(let mergedType) = mergeResult else {
+                return mergeResult
             }
-            type = refinedType
+            type = mergedType
         }
         return .success(.array(type))
     }

@@ -2,7 +2,7 @@ indirect enum JSONType: Equatable {
     case unknown
     case bool
     case int
-    case float
+    case double
     case string
     case array(JSONType)
     case dict([String: JSONType])
@@ -18,8 +18,8 @@ extension JSONType: CustomStringConvertible {
             return "bool"
         case .int:
             return "int"
-        case .float:
-            return "float"
+        case .double:
+            return "double"
         case .string:
             return "string"
         case .array(let content):
