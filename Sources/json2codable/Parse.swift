@@ -1,6 +1,8 @@
 import Foundation
 
-func parse(object: Any) -> Result<JSONType, RecodeError> {
+/// Parse an `Any` value to a `JSONType`
+/// - Parameter object: A derserialized JSON document
+func parse(object: Any) -> Result<JSONType, J2CError> {
     
     if object is Bool {
         return .success(.bool)
@@ -36,7 +38,9 @@ func parse(object: Any) -> Result<JSONType, RecodeError> {
     }
     
     if let array = object as? [Any] {
+        // Progressively merge the types of all elements together
         var type: JSONType = .unknown
+        
         for element in array {
             let parseResult = parse(object: element)
             guard case .success(let parsedType) = parseResult else {

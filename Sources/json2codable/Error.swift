@@ -1,4 +1,4 @@
-enum RecodeError: Error {
+enum J2CError: Error {
     case stdinReadError
     case deserializationError(Error)
     case unknownType
