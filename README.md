@@ -5,7 +5,7 @@ JSON2Codable is a simple command-line tool that reads a JSON document from stdin
 ## Example
 
 ```
-cat << EOF | json2codable
+$ cat << EOF | json2codable
 {
   "colors": [
     {
